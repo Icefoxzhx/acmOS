@@ -41,6 +41,7 @@ int pt_map_pages(pagetable_t pagetable, vaddr_t va, paddr_t pa, uint64 size, int
     	if((pte=pt_query(pagetable,a,1))==0 || *pte & PTE_V)
     		return -1;
     	*pte=PA2PTE(pa) | perm | PTE_V;
+		//printk("pt_map_pages:%lu %lu\n",a,last);
     	if(a==last) break;
     	a+=PGSIZE;
     	pa+=PGSIZE;
